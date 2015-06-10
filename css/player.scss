@@ -1,0 +1,148 @@
+body {
+	background-color: black;
+	color: lightgrey;
+}
+div.content, div[data-role='content'] {
+	margin-left: 0;
+	margin-right: 0
+}
+#progressBar { 
+	border-top:1px solid #aaa;
+	border-bottom:1px solid #aaa;
+	background-color: lightgrey;
+	color:#fff; 
+	width:100%; 
+	line-height: 20px;
+	font-size: 15px;
+}
+#progress {
+	.track-current-position {
+		margin-right: 5px;
+		color: white;
+	}
+	
+	background-color: grey;
+	display:inline-block;
+	text-align: right;
+	color: black;
+}
+.track-length {
+	float: right;
+}
+a[disabled="disabled"] {
+	display: none !important;
+}
+.prev, .pauseplay, .next {
+	width: 29%;
+}
+.shuffle, .repeat {
+	margin-top: 10px;
+	width: 46%;
+}
+.shuffle.full {
+	width: 96%;
+}
+@media all and (orientation:portrait) {
+	video#player_actual {
+		width: 100%;
+	}
+	img.cover {
+		width: 100%;
+	}
+	.track-selection {
+		width: 60%;
+		float: left;
+	}
+	.playlist-selection {
+		width: 40%;
+	}
+	.portrait-clear {
+		clear: both;
+	}
+
+	div.fullScreen {
+		display: none;
+	}
+}
+@media all and (orientation:landscape) {
+	#player {
+		float: right;
+	}
+	video#player_actual {
+		width: 100%;
+	}
+	#player, .controls, .status {
+		width: 50%;
+	}
+	.track-selection {
+		width: 30%;
+	}
+	.playlist-selection {
+		width: 20%;
+	}
+	img.cover {
+		float: right;
+		max-height: calc(100% - 70px);
+		max-width: 50%;
+		height: auto;
+		width: auto;
+	}
+	.track-selection, .playlist-selection, .controls, .status {
+		float: left;
+	}
+	
+}
+
+body.forceFullscreen {
+	header {
+		display: none;
+	}
+	div.content {
+		margin: 0;
+	}
+	#player, .status, .controls {
+		width: 100%;
+	}
+	div.fullScreen {
+		top: 10px;
+	}
+	.track-selection {
+		width: 60%;
+	}
+
+	.playlist-selection {
+		width: 40%;
+	}
+}
+
+div.fullScreen {
+	position: absolute;
+	top: 90px;
+	right: 10px;
+}
+
+.controls {
+	display: block;
+
+	a {
+		&:hover {
+			color: black;
+			background: lightgrey;
+		}
+
+		color: lightgrey;
+		text-decoration: none;
+		border-radius: 20px;
+	}
+
+	.prev, .pauseplay, shuffle {
+		margin-right: 2%
+	}
+
+	.prev, .next, .pauseplay, .shuffle, .repeat {
+		padding: 10px calc(1% - 2px);
+		border: 1px solid white;
+		display: inline-block;
+		text-align: center;
+	}
+}
