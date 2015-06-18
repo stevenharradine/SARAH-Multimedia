@@ -181,13 +181,9 @@ require ({
 				var player = document.getElementById("player_actual");
 				var track_length_str= jQuery (".track-length").html().split(':');
 				var containerX = jQuery (this).position().left;
-
-				// account for the progress bar not being tight to the left side of the screen
-				var x = event.screenX >= containerX ? event.screenX - containerX : event.screenX;
 				
 				// set player time = (the percent across the progress bar clicked) * (lenth of the current track in seconds)
-				// TODO: fix bug
-				player.currentTime = (x / (parseInt(jQuery(this).css("width")))) * ((parseInt(track_length_str[0]) * 60) + parseInt(track_length_str[1]));
+				player.currentTime = (event.pageX / (parseInt(jQuery(this).css("width")))) * ((parseInt(track_length_str[0]) * 60) + parseInt(track_length_str[1]));
 			});
 			jQuery ("#volume").bind ("change", function () {
 				update_volume();
