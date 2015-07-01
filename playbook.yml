@@ -1,0 +1,13 @@
+---
+- connection: local
+  hosts: localhost
+  sudo: true
+  remote_user: douglas
+  tasks:
+    - name: install software | apt
+      apt:
+        pkg: "{{ item }}"
+        state: latest
+        update_cache: yes
+      with_items:
+        - openjdk-7-jdk
