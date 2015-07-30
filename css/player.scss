@@ -42,19 +42,31 @@ a[disabled="disabled"] {
 .shuffle.full {
 	width: 96%;
 }
+
 @media all and (orientation:portrait) {
 	video#player_actual {
 		width: 100%;
+	}
+	.content:hover .controls {
+		display: block;
+	}
+	.content .controls {
+		display: none;
+	}
+	.controls {
+		position: relative;
+		margin-top: -175px;
 	}
 	img.cover {
 		width: 100%;
 	}
 	.track-selection {
 		width: 60%;
-		float: left;
+		position: absolute;
 	}
 	.playlist-selection {
 		width: 40%;
+		margin-left: 60%;
 	}
 	.portrait-clear {
 		clear: both;
@@ -75,10 +87,10 @@ a[disabled="disabled"] {
 		width: 50%;
 	}
 	.track-selection {
-		width: 30%;
+		width: 60%;
 	}
 	.playlist-selection {
-		width: 20%;
+		width: 40%;
 	}
 	img.cover {
 		float: right;
@@ -90,7 +102,6 @@ a[disabled="disabled"] {
 	.track-selection, .playlist-selection, .controls, .status {
 		float: left;
 	}
-	
 }
 
 body.forceFullscreen {
@@ -99,6 +110,16 @@ body.forceFullscreen {
 	}
 	div.content {
 		margin: 0;
+	}
+	.content:hover .controls {
+		display: block;
+	}
+	.content .controls {
+		display: none;
+	}
+	.controls {
+		position: relative;
+		margin-top: -175px;
 	}
 	#player, .status, .controls {
 		width: 100%;
