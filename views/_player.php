@@ -2,7 +2,6 @@
 				<div id="player"></div>
 				<img class="cover" src="#"/>
 			</div>
-			<div class="portrait-clear"></div>
 			<div class="controls">
 				<select class="track-selection"></select>
 				<select class="playlist-selection">
