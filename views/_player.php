@@ -1,7 +1,5 @@
-			<div>
-				<div id="player"></div>
-				<img class="cover" src="#"/>
-			</div>
+			<div id="player"></div>
+			<img class="cover" src="#"/>
 			<div class="controls">
 				<select class="track-selection"></select>
 				<select class="playlist-selection">
