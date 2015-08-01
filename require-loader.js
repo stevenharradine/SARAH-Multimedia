@@ -202,6 +202,11 @@ require ({
 
 			jQuery ("#audioOnly").bind ("change", function () {
 				update_player_with_time (playlist_index, document.getElementById("player_actual").currentTime);
+
+				if (this.checked)
+					jQuery ("body").addClass ("forceAudio")
+				else
+					jQuery ("body").removeClass ("forceAudio")
 			});
 			
 			function next_track () {
@@ -279,10 +284,14 @@ require ({
 					tag = "video";
 
 					jQuery ("img.cover").hide();
+
+					jQuery ("body").addClass("video").removeClass("audio");
 				} else if (isExtentionValid (path, audio_file_types) || isAudioOnly) {
 					tag = "audio";
 					
 					jQuery ("img.cover").show();
+
+					jQuery ("body").addClass("audio").removeClass("video");
 				}
 
 				jQuery ("#player").html('<' + tag + ' id="player_actual" autoplay="autoplay"><source src="' + path + '" /></' + tag + '>');
