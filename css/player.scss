@@ -43,65 +43,63 @@ a[disabled="disabled"] {
 	width: 96%;
 }
 
+/* controls - Hide/Show */
 @media all and (orientation:portrait) {
-	video#player_actual {
-		width: 100%;
-	}
-	.content:hover .controls {
-		display: block;
-	}
-	.content .controls {
-		display: none;
+	.content {
+		&:hover .controls {
+			display: block;
+		}
+		.controls {
+			display: none;
+		}
 	}
 	.controls {
 		position: relative;
 		margin-top: -175px;
 	}
-	img.cover {
-		width: 100%;
+}
+body {
+	&.video, &.forceFullscreen {
+		.content {
+			&:hover .controls {
+				display: block;
+			}
+			.controls {
+				display: none;
+			}
+		}
+		.controls {
+			position: relative;
+			margin-top: -175px;
+		}
 	}
-	.track-selection {
-		width: 60%;
-		position: absolute;
-	}
-	.playlist-selection {
-		width: 40%;
-		margin-left: 60%;
-	}
-	.portrait-clear {
-		clear: both;
-	}
-
-	div.fullScreen {
-		display: none;
+	&.audio {
+		.controls {
+			display: block;
+		}
 	}
 }
-@media all and (orientation:landscape) {
-	#player {
-		float: right;
-	}
-	video#player_actual {
-		width: 100%;
-	}
-	#player, .controls, .status {
-		width: 50%;
-	}
-	.track-selection {
-		width: 60%;
-	}
-	.playlist-selection {
-		width: 40%;
-	}
-	img.cover {
-		float: right;
-		max-height: calc(100% - 70px);
-		max-width: 50%;
-		height: auto;
-		width: auto;
-	}
-	.track-selection, .playlist-selection, .controls, .status {
-		float: left;
-	}
+
+video#player_actual {
+	width: 100%;
+}
+img.cover {
+	width: 100%;
+}
+.track-selection {
+	width: 60%;
+	position: absolute;
+}
+.playlist-selection {
+	width: 40%;
+	margin-left: 60%;
+}
+.portrait-clear {
+	clear: both;
+}
+
+div.fullScreen {
+	display: none;
 }
 
 body.forceFullscreen {
@@ -110,16 +108,6 @@ body.forceFullscreen {
 	}
 	div.content {
 		margin: 0;
-	}
-	.content:hover .controls {
-		display: block;
-	}
-	.content .controls {
-		display: none;
-	}
-	.controls {
-		position: relative;
-		margin-top: -175px;
 	}
 	#player, .status, .controls {
 		width: 100%;
