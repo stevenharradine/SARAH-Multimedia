@@ -80,37 +80,24 @@ div.content, div[data-role='content'] {
 	}
 }
 /* controls - Hide/Show */
-@media all and (orientation:portrait) {
-	.content {
-		&:hover .controls {
-			display: block;
-		}
-		.controls {
-			display: none;
+body {
+	cursor: none;
+
+	&.showControls {
+	  	cursor: auto;
+
+		.content {
+			.controls {
+				opacity: 1;
+				transition: opacity .15s ease-in-out;
+			}
 		}
 	}
 	.controls {
 		position: relative;
 		margin-top: -175px;
-	}
-}
-body {
-	&.video, &.forceFullscreen {
-		.content {
-			&:hover .controls {
-				opacity: 1;
-				transition: opacity .15s ease-in-out;
-
-			}
-			.controls {
-				opacity: 0;
-				transition: opacity .15s ease-in-out;
-			}
-		}
-		.controls {
-			position: relative;
-			margin-top: -175px;
-		}
+		opacity: 0;
+		transition: opacity .15s ease-in-out;
 	}
 	&.audio {
 		.controls {

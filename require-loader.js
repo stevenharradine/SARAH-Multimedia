@@ -120,7 +120,37 @@ require ({
 					jQuery (".track-selection").append("<option value=\"" + index + "\">" + playlist[index].artist + " - " + playlist[index].track + "</option>");
 				});
 			});
-			
+
+			/* Show/Hide controls */
+			new function () {
+				var controlsTimeout     = 2000;
+				var controlsTimeoutLock = false;
+				jQuery (".content").mousemove (function( event ) {
+					controlsTimeout = 2000;
+
+					jQuery ("body").addClass ("showControls");
+
+					countDownControlsTimeout (false);
+				});
+				function countDownControlsTimeout (overrideLock) {
+					if (overrideLock || !controlsTimeoutLock) {
+						controlsTimeoutLock = true;
+
+						if (controlsTimeout <= 0) {
+							jQuery ("body").removeClass ("showControls");
+							controlsTimeoutLock = false;
+						} else {
+							var timeoutCheck = 500;
+
+							setTimeout(function () {
+								controlsTimeout -= timeoutCheck;
+								countDownControlsTimeout (true)
+							}, timeoutCheck);
+						}
+					}
+				}
+			} ();
+
 			jQuery (".controls a.prev").bind ("click", function () {
 				prev_track();
 				
