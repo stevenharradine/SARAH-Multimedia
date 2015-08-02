@@ -49,6 +49,8 @@ require ({
 			jQuery ("html").keyup(function (e) {
 				var code = e.keyCode || e.which;
 				
+				showControls ();
+
 				switch (code) {
 					case 32:
 						jQuery (".controls a.pauseplay").click();
@@ -79,6 +81,8 @@ require ({
 				}
 			}).keydown (function (e) {
 				var code = e.keyCode || e.which;
+
+				showControls ();
 
 				switch (code) {
 					case 107: 	// volume up
@@ -122,34 +126,40 @@ require ({
 			});
 
 			/* Show/Hide controls */
-			new function () {
-				var controlsTimeout     = 2000;
-				var controlsTimeoutLock = false;
-				jQuery (".content").mousemove (function( event ) {
-					controlsTimeout = 2000;
+			var controlsTimeout     = 2000;
+			var controlsTimeoutLock = false;
 
-					jQuery ("body").addClass ("showControls");
+			jQuery (".content").mousemove (function( event ) {
+				showControls ();
+			});
+			jQuery (".content").click (function( event ) {
+				showControls ();
+			});
 
-					countDownControlsTimeout (false);
-				});
-				function countDownControlsTimeout (overrideLock) {
-					if (overrideLock || !controlsTimeoutLock) {
-						controlsTimeoutLock = true;
+			function showControls () {
+				controlsTimeout = 2000;
 
-						if (controlsTimeout <= 0) {
-							jQuery ("body").removeClass ("showControls");
-							controlsTimeoutLock = false;
-						} else {
-							var timeoutCheck = 500;
+				jQuery ("body").addClass ("showControls");
 
-							setTimeout(function () {
-								controlsTimeout -= timeoutCheck;
-								countDownControlsTimeout (true)
-							}, timeoutCheck);
-						}
+				countDownControlsTimeout (false);
+			}
+			function countDownControlsTimeout (overrideLock) {
+				if (overrideLock || !controlsTimeoutLock) {
+					controlsTimeoutLock = true;
+
+					if (controlsTimeout <= 0) {
+						jQuery ("body").removeClass ("showControls");
+						controlsTimeoutLock = false;
+					} else {
+						var timeoutCheck = 500;
+
+						setTimeout(function () {
+							controlsTimeout -= timeoutCheck;
+							countDownControlsTimeout (true)
+						}, timeoutCheck);
 					}
 				}
-			} ();
+			}
 
 			jQuery (".controls a.prev").bind ("click", function () {
 				prev_track();
