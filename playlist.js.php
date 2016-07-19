@@ -2,9 +2,11 @@
 session_start();
 $relative_base_path = '../../';
 
+require_once '_model.php';
 require_once $relative_base_path . 'global.php';
 
 if( isset ($_SESSION['usertype']) ) {
+	$link = MusicManager::get_link();
 	$USER_ID = $_SESSION['USER_ID'];
 	
 	DB_Connect($DB_ADDRESS, $DB_USER, $DB_PASS, $DB_NAME);
@@ -37,16 +39,16 @@ if( isset ($_SESSION['usertype']) ) {
 		$sql = "SELECT * FROM `music_playlist` JOIN `music` ON  `music_playlist`.MUSIC_ID = `music`.MUSIC_ID WHERE `USER_ID`='" . $_SESSION['USER_ID'] . "'";
 	}
 	//echo $sql;
-	$music_data = mysql_query($sql) or die(mysql_error());
+	$music_data = $link->query($sql);
 	
 	$sql_settings =	'SELECT `key`, `value` FROM `settings` WHERE ' .
 					'`key`=\'music_audio\' OR ' .
 					'`key`=\'music_video\' OR ' .
 					'`key`=\'music_default_audio\' OR ' .
 					'`key`=\'music_default_video\'';
-	$setings_data = mysql_query($sql_settings) or die(mysql_error());
+	$setings_data = $link->query($sql_settings);
 	
-	while (($settings_row = mysql_fetch_array( $setings_data )) != null) {
+	while (($settings_row = mysqli_fetch_array( $setings_data )) != null) {
 		$key = $settings_row['key'];
 		$value = $settings_row['value'];
 		
@@ -75,7 +77,7 @@ var playlist =
 ?>
 [
 <?php
-	while (($music_data_row = mysql_fetch_array( $music_data )) != null) {
+	while (($music_data_row = mysqli_fetch_array( $music_data )) != null) {
 		$artist	= $music_data_row['artist'];
 		$track	= $music_data_row['track'];
 		$path	= $music_data_row['path'];

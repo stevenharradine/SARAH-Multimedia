@@ -4,7 +4,7 @@
 				<select class="track-selection"></select>
 				<select class="playlist-selection">
 					<option>Play all</option>
-		<?php while (($playlist_row = mysql_fetch_array( $playlist_data )) != null) { ?>
+		<?php while (($playlist_row = mysqli_fetch_array( $playlist_data )) != null) { ?>
 					<option<?php echo (isset ($_REQUEST['playlist']) && ($playlist_row['playlist_name'] == $_REQUEST['playlist'])) ? ' selected="selected"' : ''; ?>><?php echo $playlist_row['playlist_name']; ?></option>
 		<?php } ?>
 				</select>

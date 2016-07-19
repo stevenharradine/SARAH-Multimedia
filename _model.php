@@ -1,10 +1,22 @@
 	<?php
 		class MusicManager {
+			public function get_link () {
+				global $DB_ADDRESS;
+				global $DB_USER;
+				global $DB_PASS;
+				global $DB_NAME;
+
+				return $link = DB_Connect($DB_ADDRESS, $DB_USER, $DB_PASS, $DB_NAME);
+			}
+
 			private function getPlayableFormat ( $type ) {
+				$link = MusicManager::get_link();
+				$USER_ID = $_SESSION['USER_ID'];
+
 				$sql_musicFiletypes = "SELECT `key`, `value` FROM `settings` WHERE `key`='music_$type'";
-				$musicFiletypes_data = mysql_query($sql_musicFiletypes) or die(mysql_error());
+				$musicFiletypes_data = $link->query($sql_musicFiletypes);
 				
-				while (($musicFiletypes_row = mysql_fetch_array( $musicFiletypes_data )) != null) {
+				while (($musicFiletypes_row = mysqli_fetch_array( $musicFiletypes_data )) != null) {
 					$key = $musicFiletypes_row['key'];
 					$value = $musicFiletypes_row['value'];
 					
@@ -101,11 +113,11 @@ EOD;
 			}
 
 			public function getPlaylists () {
-				global $sessionManager;
-				$USER_ID = $sessionManager->getUserId();
+				$link = MusicManager::get_link();
+				$USER_ID = $_SESSION['USER_ID'];
 
 				$sql_playlist = "SELECT DISTINCT `playlist_name` FROM `music_playlist` WHERE `USER_ID`='$USER_ID';";
-				$playlist_data = mysql_query($sql_playlist) or die(mysql_error());
+				$playlist_data = $link->query($sql_playlist);
 
 				return $playlist_data;
 			}
